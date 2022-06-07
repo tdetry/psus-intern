@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "node-fetch": "^3.2.5"
+  },
+  "name": "test",
+  "description": "Internship Project Works Repository",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odoo-ps/psus-intern.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/odoo-ps/psus-intern/issues"
+  },
+  "homepage": "https://github.com/odoo-ps/psus-intern#readme"
+}

@@ -6,7 +6,8 @@ li[-1]  # last element
 li[::-1]  # li[start:end:step]
 li2 = li[:]  # one layer deep copy using slices (li2 is li returns False)
 del li[2]  # remove element at specified index
-li.remove(4)  # removes element of value from list
+li.remove(3)  # removes element of value from list
+li.append(3)
 li + other_li  # no modification
 li.extend(other_li)  # modification
 
@@ -22,4 +23,32 @@ d, e, f = 4, 5, 6  # tuple default creation
 
 # dicitonary
 
-empty_dict = {}
+empty_dict = {}  # dict = {"key": value}
+filled_dict = {"one": 1, "two": 2, "three": 3}
+valid_dict = {(1, 2, 3): [1, 2, 3]}  # keys must be immutable
+# immutable: ints, floats, strings, tuples
+filled_dict["one"]  # using key "one", return value pair
+filled_dict.keys()  # lists all keys from dict
+filled_dict.values()  # lists all values from dict
+filled_dict.get("four")  # more stable than just using key "four"
+# returns None, or 2nd arg
+filled_dict.setdefault("five", 5)  # key "five" set to value 5
+# inserts key-value pair iff pair didn't exist before
+filled_dict["four"] = 4  # add new key-value pair
+# also: <dict>.update({key: value})
+
+# sets
+
+empty_set = set()  # mutable, like mathematical sets
+some_set = {1, 1, 2, 2, 3, 4}  # sets cannot have duplicate values
+# some_set = {1, 2, 3, 4}
+valid_set = {(1,), 1}  # elements of set must be immutable
+filled_set = some_set
+filled_set.add(5)  # add new elements given it doesn't exist
+# set operations:
+# intersection '&' : all shared elements between sets
+# union '|' : all unique elements from both sets
+# difference '-' : all unique elements from a not in b
+# symmetric difference '^' : all unique elements in only one set
+# superset '>=' : if all elements in b are in a
+# subset '<=' : if all elements in a are in b

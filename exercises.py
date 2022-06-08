@@ -52,3 +52,41 @@ filled_set.add(5)  # add new elements given it doesn't exist
 # symmetric difference '^' : all unique elements in only one set
 # superset '>=' : if all elements in b are in a
 # subset '<=' : if all elements in a are in b
+
+# loops
+
+animals = ["dog", "cat", "mouse"]
+
+for animal in animals:
+    print("{} is a mammal".format(animal))  # format() interpolates
+    # formatted strings
+
+for i in range(4, 8, 2):  # range(lower, upper, step), upper exclusive
+    print(i)
+
+for idx, value in enumerate(animals):
+    print(idx, value)  # enumerate(iterable) returns index-value
+
+# exception handlers
+
+try:
+    raise IndexError("This is an index error")
+    # prints error code to terminal and stops
+except IndexError:
+    pass  # recovery statement
+except (TypeError, NameError):
+    pass  # multi-exceptions allowed if needed
+else:
+    print("All good!")  # no exceptions encountered
+finally:  # always run
+    print("Resource cleaning here.")
+
+# can use with keyword instead of try/finally
+with open("text.txt") as f:
+    for line in f:
+        print(line)
+f.close()  # close file reader
+
+contents = {"aa": 12, "bb": 21}
+with open("text.txt", "w+") as file:  # look at mode flags for more
+    file.write(str(contents))

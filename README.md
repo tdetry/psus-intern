@@ -1,2 +1,4 @@
 # psus-intern
-Internship Project Works Repository 
+
+
+I exercised and learn postgres via https://pgexercises.com/questions/joins/simplejoin2.html

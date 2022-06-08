@@ -5,7 +5,7 @@ class TreeNode:
         self.right = right
         
         
-        
+# this class contains functions that are answers for leetcode questions 
 class Solution:
     # two binary trees are considered the same if they are identical
     #
@@ -28,3 +28,10 @@ class Solution:
                 for j in range ( len ( matrix[0] ) ): 
                     if target == matrix[i][j]:
                         return True 
+                    
+# dealing with two lists with different size         
+            
+questions = ['name', 'quest', 'favorite color','asd']
+answers = ['lancelot', 'the holy grail', 'blue']
+for q, a in zip(questions, answers):
+    print('What is your {0}?  It is {1}.'.format(q, a))

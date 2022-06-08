@@ -29,7 +29,6 @@ class Converter {
     constructor(input, output, isStdin) {
         this.input = input
         this.output = output
-        // this.writeOutput = util.promisify(this.output.write)
         this.isStdin = isStdin
     }
 
@@ -43,18 +42,23 @@ class Converter {
                 await this.process(line)
             })
         } else {
-            await this.process(this.input.read())
+            this.input.read()
+            // Don't ask, this is the way of Node.JS...
+            this.input.on('data', data => {
+                this.process(data)
+            })
         }
     }
 
     async process(line) {
         line = marked(line)
         // Hack: util.promisify doesn't work, so this will have to do...
-        return await new Promise((_, reject) => 
-            this.output.write(line, err => err && reject(err)))
+        return await new Promise((resolve, reject) => 
+            resolve(this.output.write(line, err => err && reject(err))))
     }
 
     async close() {
+
     }
 }
 

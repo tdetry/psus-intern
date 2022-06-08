@@ -182,3 +182,68 @@ def variable_arguments(*args,** kwargs):
 variable_arguments(1,3,4)
 # we can use the global variable 
         
+
+
+class Student:
+    name = 'unknown' # class attribute
+    age = 'unknown'
+    def __init__(self):
+        self.age = 20  # instance attribute
+
+    @classmethod
+    def tostring(cls):
+        print('Student Class Attributes: name=',cls.name,', age=', cls.age)
+
+    @staticmethod
+    def static_method():
+        print('this is a static method')
+    @property
+    def get_age(self):
+        return self.age
+s = Student()
+#class method can only access class attributes and not all methods
+print(s.tostring())
+
+#static methods can be called with the class name or the object name
+print(Student.static_method())
+
+# Inheritence 
+class Shape :
+    def __init__(self,name) -> None:
+        self.name =name
+    def area(self):
+        return 'not implemented'
+    
+class Square(Shape):
+    def __init__(self,side) -> None:
+        super().__init__('square')
+        self.side = side
+    def area(self):
+        return self.side**2
+    def perimeter(self):
+        return self.side*4
+
+s = Square(5)
+print(s.name)
+print(s.area())
+
+#generators are used for lazy loading. This will help in not loading all the data at once rather loading only the value which is required at that point of time.
+
+# decorators are way to change or modify the functionality of a function without changing the actual code.
+# each function is an object and can be passed to another function as parameter.
+# wrapper 
+def f1(func):
+    def wrapper():
+        print("Started")
+        func()
+        print("ended")
+    return wrapper
+def f():
+    print('Hello')
+f1(f)()
+f =f1(f)
+f()
+@f1
+def f2():
+    print("hi")
+f2()

@@ -102,9 +102,27 @@ file.close()
 with open("text.txt", "r+") as file:
     contents1 = file.read()
 print(contents1)
+file.close()
 
 with open("text2.txt", "r+") as file:
     contents2 = json.load(file)
 print(contents2)
+file.close()
 
 # iterables
+
+iterable = filled_dict.keys()  # keys() implements Iterable class
+iterator = iter(iterable)  # iterable objects can create iterators
+next(iterator)  # traversing only by references
+# implicitly, for loops work for iterators
+list(iterable)  # returns all elements in the iterable
+list(iterator)  # returns [] because the state is saved (remaining next)
+
+# functions
+
+
+def var_args(*args):
+    return args  # reutrns the arguments passed through
+
+
+print(var_args(1, "hi", 3))

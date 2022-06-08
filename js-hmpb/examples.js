@@ -1,0 +1,69 @@
+// number examples
+console.log(0.1 + 0.2);
+var number = 10;
+console.log(number);
+
+number += 5;
+console.log(number);
+
+number -= 2;
+console.log(number);
+
+number *= 2;
+console.log(number);
+
+number /= 2;
+console.log(number);
+
+number %= 2; // remainder
+console.log(number);
+
+
+// string examples
+var string = "hello";
+console.log(string);
+
+string += " world";
+console.log(string);
+
+console.log(string.length);
+console.log(string.toUpperCase());
+console.log(string.toLowerCase());
+console.log(string[0]);
+
+// boolean examples
+var boolean = true;
+console.log(boolean);
+
+console.log(!boolean);
+
+// array examples
+var array = [1, 2, 3];
+console.log(array);
+console.log(array[0]);
+console.log(array.length)
+array.push(4);
+console.log(array);
+array.forEach(item => console.log(item)); // iterate over array(callback)
+var poped = array.pop();
+console.log(array);
+
+var shifted = array.shift(); // removes first element
+console.log(array);
+
+array.unshift(10); // adds element to the beginning of the array
+console.log(array);
+
+// function to compute the symetric difference of two arrays
+function sym(args) {
+    var result = [];
+    var args = Array.from(arguments);
+    args.forEach(function(item) {
+        result = result.concat(item);
+    });
+    result = result.filter(function(item, index) {
+        return result.indexOf(item) === index;
+    });
+    return result;
+}
+console.log(sym([1, 2, 3], [5, 2, 1, 4]));

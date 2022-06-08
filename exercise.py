@@ -1,3 +1,6 @@
+from decimal import DivisionByZero
+
+
 def arithmeticoperators(a,b):
     ls = []
     ls.append(a+b) #addition
@@ -95,6 +98,87 @@ print(list_manipulations([]))
 
 # Tuples are similar to lists but they are immutable. Hence once created they cannot be modified.
 def dict_manipulations():
+    ''''''
     m = {}
     m['a'] = 1
     # We can only use immutable data types as keys in dict
+    m['b'] =2
+    print(list(m.keys())) # will retrieve all the keys in the dict and will convert it into list
+    print(list(m.values())) # will retrieve all the values in the dict and will convert them into a list
+    # to check if an element is in the dict. we can do 
+    if 'a' in m :
+        print('a is a key in the dict')
+    # we can get the values of dict in the following ways.
+    print(m['a'])
+    print(m.get('a'))
+dict_manipulations()
+
+def set_manipulations():
+    s = set()
+    # sets can only hold immutable data
+    s.add(5)
+    s.add(6)
+    print(s)
+    # set operations like intersection,union , ifference can we performed
+    b = {2,3,5}
+    print(s-b) # this will only give the elements which are there in s but not in b
+    print(s^b) # this is symmetric difference
+    print(s&b)
+    print(s|b)
+set_manipulations()
+
+def control_flows_and_iterables():
+    '''
+        '''
+    a = 5
+    if a>5:
+        print('a is greater than 5')
+    elif a <5:
+        print('a is less than 5')
+    else:
+        print('a is 5')
+    # lsit iterations can be used using the for look
+    for x in ['a',5,'v']:
+        print(x)
+    # we can use the range iterable for iterating over numbers
+    for i in range(5):
+        if i ==1:
+            break
+    # we can use enumerate in order to retrieve both the index and the value at the index
+    for i,x in enumerate(['a','b','c']):
+        print('index', i,'value',x)
+
+    i = 5 
+    while i < 5:
+        i+=1
+control_flows_and_iterables()    
+
+def exception_handling():
+    '''
+    '''
+    try:
+        raise DivisionByZero('error')
+    except DivisionByZero as e:
+        print(e.args)
+    else:
+        print('will reach here only if there is ni error')
+    finally:
+        print('will reach here no matter what happens')
+exception_handling()
+def file_handling():
+    '''
+    '''
+    # open file
+    with open('example.txt') as f :
+        contents = f.read()
+        print(contents)
+    # similarly write will work
+def variable_arguments(*args,** kwargs):
+    '''
+    This finction takes variable arguments and stores in a tuple. we can also sent keyword arguements using the ** operator it stores them as a dict
+    '''
+    print(args)
+    print(kwargs)
+variable_arguments(1,3,4)
+# we can use the global variable 
+        

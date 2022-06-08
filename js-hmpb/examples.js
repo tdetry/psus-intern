@@ -54,16 +54,3 @@ console.log(array);
 array.unshift(10); // adds element to the beginning of the array
 console.log(array);
 
-// function to compute the symetric difference of two arrays
-function sym(args) {
-    var result = [];
-    var args = Array.from(arguments);
-    args.forEach(function(item) {
-        result = result.concat(item);
-    });
-    result = result.filter(function(item, index) {
-        return result.indexOf(item) === index;
-    });
-    return result;
-}
-console.log(sym([1, 2, 3], [5, 2, 1, 4]));

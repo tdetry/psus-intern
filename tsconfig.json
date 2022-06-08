@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "noEmitOnError": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

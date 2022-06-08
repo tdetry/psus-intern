@@ -1,5 +1,7 @@
 # lists
 
+import json
+
 li = [1, 2, 4, 3]  # mutable
 other_li = [4, 5, 6]
 li[-1]  # last element
@@ -89,4 +91,13 @@ f.close()  # close file reader
 
 contents = {"aa": 12, "bb": 21}
 with open("text.txt", "w+") as file:  # look at mode flags for more
-    file.write(str(contents))
+    file.write(str(contents))  # writes string to file
+file.close()
+
+with open("text.txt", "w+") as file:
+    file.write(json.dumps(contents))  # writes object to file
+file.close()
+
+with open("text.txt", "r+") as file:
+    contents = file.read()
+print(contents)

@@ -1,4 +1,4 @@
 # psus-intern
 
 
-I learnt python using leetcode exercises
+I learned postgres using the exercise provided within the subtask.

@@ -1,0 +1,24 @@
+{
+  "name": "psus-intern",
+  "version": "1.0.0",
+  "description": "Internship Project Works Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odoo-ps/psus-intern.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/odoo-ps/psus-intern/issues"
+  },
+  "homepage": "https://github.com/odoo-ps/psus-intern#readme",
+  "dependencies": {
+    "@types/readline-sync": "^1.4.4",
+    "readline-sync": "^1.4.10"
+  }
+}

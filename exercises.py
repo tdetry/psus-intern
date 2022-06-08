@@ -60,8 +60,8 @@ filled_set.add(5)  # add new elements given it doesn't exist
 animals = ["dog", "cat", "mouse"]
 
 for animal in animals:
-    print("{} is a mammal".format(animal))  # format() interpolates
-    # formatted strings
+    print("{} is a mammal".format(animal))
+    # format() interpolates formatted strings
 
 for i in range(4, 8, 2):  # range(lower, upper, step), upper exclusive
     print(i)
@@ -121,8 +121,32 @@ list(iterator)  # returns [] because the state is saved (remaining next)
 # functions
 
 
-def var_args(*args):
-    return args  # reutrns the arguments passed through
+def func_arg(*args, **kwargs):
+    print("Positional:", args)  # positional arguments, in order
+    print("Keywords:", kwargs)  # keyword arguments, explicit assignment
+    # keyword arguments must be after positional arguments
 
 
-print(var_args(1, "hi", 3))
+func_arg(1, 3, hello="hi")
+# args are tuples, kwargs are dictionaries
+
+tup = (1, 2, 3, 4)
+dic = {"a": 3, "b": 4}
+func_arg(*tup, **dic)  # * and ** expands tuples and dictionaries respectively
+
+
+def adder_new(x):
+    def adder(y):
+        return x + y
+    return adder
+
+
+add_10 = adder_new(10)  # addresses x variable
+print(add_10(3))  # addresses y variable
+
+# anonymous functions
+
+(lambda x: x > 2)(3)  # note format: second () includes argument
+(lambda x, y: x ** 2 + y ** 2)(y=2, x=1)  # kwargs also works
+
+list(map(add_10, [1, 2, 3]))  # applies function to 2nd args

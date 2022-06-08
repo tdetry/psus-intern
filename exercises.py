@@ -89,15 +89,22 @@ with open("text.txt") as f:
         print(line)
 f.close()  # close file reader
 
-contents = {"aa": 12, "bb": 21}
+contents1 = {"aa": 12, "bb": 21}
+contents2 = (1, 2, 3, 4, 5, 6)
 with open("text.txt", "w+") as file:  # look at mode flags for more
-    file.write(str(contents))  # writes string to file
+    file.write(str(contents1))  # writes string to file
 file.close()
 
-with open("text.txt", "w+") as file:
-    file.write(json.dumps(contents))  # writes object to file
+with open("text2.txt", "w+") as file:
+    file.write(json.dumps(contents2))  # writes object to file
 file.close()
 
 with open("text.txt", "r+") as file:
-    contents = file.read()
-print(contents)
+    contents1 = file.read()
+print(contents1)
+
+with open("text2.txt", "r+") as file:
+    contents2 = json.load(file)
+print(contents2)
+
+# iterables

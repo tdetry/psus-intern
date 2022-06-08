@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todo app</title>
+    </head>
+    <body>
+            <input type="text" value="" id="newTask"> 
+            <input type="submit" value="add task" onclick="addTask()">
+
+            <input type="text" value="" id="deleteTask"> 
+            <input type="submit" value="remove task" onclick="removeTask()">
+
+        <ul id="taskList">
+            
+        </ul>
+
+
+
+
+    <script>
+        var taskArr = ["lorem", "ipsum"];
+        
+        function addTask(){
+            var taskForm = document.getElementById("newTask")
+            var task = taskForm.value;
+            taskArr.push(task);
+            updateTasks();   
+        }
+
+        function removeTask(){
+            var taskForm = document.getElementById("deleteTask")
+            var taskToRemove = taskForm.value;
+            for (task in taskArr){
+                if (taskArr[task] == taskToRemove){
+                    taskArr.splice(task);
+                    break;
+                }
+            }
+            updateTasks(); 
+        }
+
+
+        function updateTasks(){
+            document.getElementById("taskList").innerHTML = '';
+            console.log("called")
+            for (task in taskArr){
+                var taskNode = document.createElement("li");
+                var taskBody = document.createTextNode(taskArr[task]);
+                taskNode.appendChild(taskBody);
+                document.getElementById("taskList").appendChild(taskNode);
+            }
+            
+        }
+
+        updateTasks();
+        
+    </script>
+
+    </body>
+
+
+
+</html>
+

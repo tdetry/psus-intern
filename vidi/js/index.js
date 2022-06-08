@@ -5,7 +5,6 @@ const yargs = require('yargs')
 const fs = require('fs/promises')
 const { stdin, stdout } = require('process')
 const readline = require('node:readline')
-const util = require('util')
 
 async function main() {
     const args = await parseArgs()
@@ -30,7 +29,7 @@ class Converter {
     constructor(input, output, isStdin) {
         this.input = input
         this.output = output
-        this.writeOutput = util.promisify(this.output.write)
+        // this.writeOutput = util.promisify(this.output.write)
         this.isStdin = isStdin
     }
 
@@ -50,8 +49,9 @@ class Converter {
 
     async process(line) {
         line = marked(line)
-        // TODO: Make this work
-        await this.writeOutput(line)
+        // Hack: util.promisify doesn't work, so this will have to do...
+        return await new Promise((_, reject) => 
+            this.output.write(line, err => err && reject(err)))
     }
 
     async close() {

@@ -1,0 +1,247 @@
+/* SELECT, traigo la informacion de las tablas
+select * from actor; -- Para toda la informacion de esa tabla  
+select first_name, last_name, email from customer; -- Para la informacion de esa tabla
+select first_name || ' ' || last_name, email from customer; -- Puedo usar declaraciones
+select 5*3; */
+
+/* AS, cambio el nombre de la tabla
+select first_name, last_name as surname from customer; 
+select first_name, last_name surname from customer; 
+select first_name || ' ' || last_name as full_name, email from customer; */
+
+/* ASC, DESC and NULL (last, first)
+select first_name, last_name from customer order by first_name ASC; 
+select first_name, last_name from customer order by first_name; 
+select first_name, last_name from customer order by first_name DESC; 
+select first_name, last_name from customer order by first_name ASC, last_name DESC; 
+select first_name, length(last_name) len from customer order by len DESC; 
+
+create table sort_demo(num INT);
+
+-- insert some data
+insert into sort_demo(num)
+values(1),(2),(3),(null);
+
+select num from sort_demo order by num nulls last;
+select num from sort_demo order by num nulls first;*/
+
+/* Distinct
+create table distinct_demo ( 
+	id serial not NULL primary key,
+	bcolor VARCHAR,
+	fcolor VARCHAR
+);
+
+insert into distinct_demo (bcolor, fcolor)
+values
+	('red', 'red'),
+	('red', 'red'),
+	('red', NULL),
+	(NULL, 'red'),
+	('red', 'green'),
+	('red', 'blue'),
+	('green', 'red'),
+	('green', 'blue'),
+	('green', 'green'),
+	('blue', 'red'),
+	('blue', 'green'),
+	('blue', 'blue');
+    
+select id, bcolor, fcolor from distinct_demo;
+select distinct bcolor, fcolor from distinct_demo order by bcolor;
+select distinct on(bcolor) bcolor, fcolor from distinct_demo order by bcolor, fcolor;*/
+
+/*WHERE
+-- Operators
+select last_name, first_name from customer where first_name = 'Jamie';
+select last_name, first_name from customer where first_name = 'Jamie' and last_name = 'Rice';
+select last_name, first_name from customer where last_name = 'Rodriguez' or first_name = 'Adam';;
+select last_name, first_name from customer where first_name in ('Ann','Anne','Annie');
+select last_name, first_name from customer where first_name like 'Ann%';
+select last_name, length(first_name) name_length from customer where first_name like 'A%' and length(first_name) between 3 and 5 order by name_length;
+select last_name, first_name from customer where first_name like 'Bra%' and last_name <> 'Motley';*/
+
+/* LIMIT and OFFSET
+select film_id, title, release_year from film order by film_id limit 5;
+select film_id, title, release_year from film order by rental_rate desc limit 10;
+select film_id, title, release_year from film order by film_id limit 4 offset 3;
+select film_id, title from film order by title fetch first row only;
+select film_id, title from film order by title fetch first 5 row only;
+select film_id, title from film order by title offset 5 rows fetch first 5 row only;*/
+
+/*IN
+select customer_id, rental_id, return_date from rental where customer_id in (1, 2) order by return_date desc;
+select customer_id, rental_id, return_date from rental where customer_id not in (1, 2);
+select customer_id from rental where cast (return_date as date) = '2005-05-27' order by customer_id;
+select customer_id, first_name, last_name FROM customer where customer_id in (select customer_id from rental where cast (return_date as date) = '2005-05-27') order by customer_id;*/
+
+/*BETWEEN
+select customer_id, payment_id, amount from payment where amount between 8 and 9;
+select customer_id, payment_id, amount from payment where amount not between 8 and 9;*/
+
+/*LIKE, ILIKE, IS 
+select first_name, last_name from customer where first_name like 'Jen%';
+select first_name, last_name from customer where first_name not like 'Jen%';
+select first_name, last_name from customer where first_name not ilike 'BAR%';
+select bcolor, fcolor from distinct_demo where bcolor is not null;*/
+
+/*JOINS
+create table basket_a (
+    a INT primary key,
+    fruit_a VARCHAR (100) not NULL
+);
+
+create table basket_b (
+    b INT primary key,
+    fruit_b VARCHAR (100) not NULL
+);
+
+insert into basket_a (a, fruit_a)
+values
+    (1, 'Apple'),
+    (2, 'Orange'),
+    (3, 'Banana'),
+    (4, 'Cucumber');
+
+insert into basket_b (b, fruit_b)
+values
+    (1, 'Orange'),
+    (2, 'Apple'),
+    (3, 'Watermelon'),
+    (4, 'Pear');
+    
+-- INNER JOIN
+SELECT a, fruit_a, b, fruit_b from basket_a inner join basket_b on fruit_a = fruit_b;
+   
+-- LEFT JOIN
+SELECT a, fruit_a, b, fruit_b from basket_a left join basket_b on fruit_a = fruit_b;
+
+-- RIGHT JOIN
+SELECT a, fruit_a, b, fruit_b from basket_a right join basket_b on fruit_a = fruit_b;
+
+-- FULL OUTER JOIN
+SELECT a, fruit_a, b, fruit_b from basket_a full outer join basket_b on fruit_a = fruit_b;
+
+-- FULL JOIN
+SELECT a, fruit_a, b, fruit_b from basket_a full join basket_b on fruit_a = fruit_b where a is null or b is null;
+
+-- CROSS JOIN
+SELECT a, fruit_a, b, fruit_b from basket_a cross join basket_b;
+
+-- NATURAL (INNER, LEFT, RIGHT) JOIN, INNER BY DEFAULT
+SELECT a, fruit_a, b, fruit_b from basket_a natural join basket_b;*/
+
+/*Group by
+select customer_id, sum(amount) from payment group by customer_id;
+select first_name || ' ' || last_name full_name, sum (amount) amount from payment inner join customer using (customer_id) group by full_name order by amount desc;*/
+
+/*Having
+select customer_id, sum (amount) from payment group by customer_id having sum (amount) > 200;
+select store_id, count (customer_id) from customer group by store_id having count (customer_id) > 300;*/
+
+/*Union
+SELECT * from basket_a union select * from basket_b;
+SELECT * from basket_a intersect select * from basket_b;*/
+
+/*Subquerys
+select avg(rental_rate) from film;
+select film_id, title, rental_rate from film where rental_rate > (select avg(rental_rate) from film);
+select film_id, title from film where film_id in (select inventory.film_id from rental inner join inventory on inventory.inventory_id = rental.inventory_id where return_date between '2005-05-29' and '2005-05-30');
+select first_name, last_name from customer where exists (select 1 from payment where payment.customer_id = customer.customer_id);
+select title from film where length >= any(select max(length) from film inner join film_category using(film_id) group by category_id);*/
+
+/*INSERT, UPDATE, DELETE and Transactions
+drop table if exists links;
+
+create table [if not exists] links (
+	id SERIAL primary key,
+	url VARCHAR(255) not NULL,
+	name VARCHAR(255) not NULL);
+
+insert into links (url, name)
+values('https://www.postgresqltutorial.com','PostgreSQL Tutorial');
+
+insert into links (url, name) values
+    ('https://www.google.com','Google'),
+    ('https://www.yahoo.com','Yahoo'),
+    ('https://www.bing.com','Bang');
+
+update links set name = 'Bing' where url = 'https://www.bing.com';
+delete from links where name = 'Google';
+
+begin; --Start the transaction
+insert into links(url,name) values ('https://www.gmail.com','Gmail');
+commit; --Commit the change
+
+begin;
+update links set name = 'Yahu'
+WHERE url = 'https://www.yahoo.com';
+rollback;--Undo a change
+
+select	* from links;*/
+
+/*Primary and Foreign keys
+create table accounts (
+	user_id serial PRIMARY KEY, --serial, to autoincrement
+	username VARCHAR ( 50 ) UNIQUE NOT NULL,
+	password VARCHAR ( 50 ) NOT NULL,
+	email VARCHAR ( 255 ) UNIQUE NOT NULL,
+	created_on TIMESTAMP NOT NULL,
+        last_login TIMESTAMP 
+);
+
+create table roles(
+   role_id serial PRIMARY KEY,
+   role_name VARCHAR (255) UNIQUE NOT NULL
+);
+
+create table account_roles (
+  user_id INT NOT NULL,
+  role_id INT NOT NULL,
+  grant_date TIMESTAMP,
+  PRIMARY KEY (user_id, role_id),
+  FOREIGN KEY (role_id)
+      REFERENCES roles (role_id),
+  FOREIGN KEY (user_id)
+      REFERENCES accounts (user_id)
+);*/
+
+/*INSERT INTO
+select * from account_roles;
+
+SELECT film_id, title, rental_rate INTO TABLE film_r FROM film WHERE rating = 'R'
+AND rental_duration = 5 ORDER BY title;
+
+SELECT * FROM film_r;*/
+
+/*ALTER
+ALTER TABLE account_roles 
+ADD COLUMN new_Col int;
+
+ALTER TABLE account_roles 
+RENAME COLUMN new_Col 
+TO new_column_name;
+
+ALTER TABLE account_roles 
+DROP COLUMN new_Col;*/
+
+/*RENAME TO, ADD COLUMN, DROP COLUMN, RENAME COLUMN
+select * from account_roles;
+alter table account_roles rename to new_table_name;
+
+ALTER TABLE new_table_name
+ADD COLUMN new_column_name int;
+
+ALTER TABLE new_table_name 
+DROP COLUMN new_column_name CASCADE;
+
+ALTER TABLE new_table_name 
+RENAME COLUMN grant_date to new_name;
+
+DROP TABLE new_table_name;
+TRUNCATE TABLE new_table_name;
+
+select * from new_table_name;*/
+
+
+

@@ -43,3 +43,28 @@ function exFunc(num1, num2) {
 
 a = exFunc(1, 3);
 console.log(a);
+
+function gteFunc(num1, num2) {
+   if (num1 > num2) {  // conditions must be in parentheses and bracketed
+      return `${num1} is greater than ${num2}`;
+   } else if (num1 == num2) { // else if statement follows trailing bracket
+      if (num1 === num2) { // === strictly compares value AND native type of args
+         return `${num1} is equal to ${num2}`;
+      } else {
+         return `${num1} is equal to ${num2} but aren't the same types.`;
+         // strings and ints are compared using string ascii values
+         // args are implicitly typecasted for comparison unless strict (===)
+      }
+   } else if (num1 < num2) {
+      return `${num1} is less than ${num2}`;
+      // ${expression} can be used in strings to refer to variables or dynamic values
+   } else { // all else fails
+      return "Something went wrong!";
+   }
+}
+
+// ! (bang) inverse bool, use with == or === (!= or !==)
+// && (and) both conditions must be true to return true, else false
+// || (or) if all conditions false then return false, else true
+
+// currently : https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/selecting-from-many-options-with-switch-statements

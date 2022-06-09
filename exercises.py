@@ -1,6 +1,7 @@
 # lists
 
 import json
+from functools import wraps
 
 li = [1, 2, 4, 3]  # mutable
 other_li = [4, 5, 6]
@@ -163,3 +164,50 @@ list(filter(lambda x: x > 5, [3, 4, 5, 6, 7]))
 {x: x**2 for x in range(5)}  # key-value pair where keys go from 0-4
 
 # generators
+# returns iterator object with sequence of values
+# 'yield' keyword used instead of 'return'
+# memory efficient
+
+
+def double_numbers(iterable):
+    for i in iterable:
+        yield i + i
+# each number in iterable, double its value and add it to an
+# internal iterable object (list maybe?)
+
+
+for i in double_numbers(range(1, 900000000)):
+    print(i)
+    if i >= 30:
+        break
+
+# generator comprehensions, can be typed to list
+values = (-x for x in [1, 2, 3, 4, 5])
+for x in values:
+    print(x)
+
+# decorators
+# 'beg' func wraps 'say' func
+# use '@' to define the decorator function, which dynamically
+# alter functionality of function, method or class without
+# using subclasses or changing source code of decorated function
+
+
+def beg(target_function):
+    @wraps(target_function)
+    def wrapper(*args, **kwargs):
+        msg, say_please = target_function(*args, **kwargs)
+        if say_please:
+            return "{} {}".format(msg, "Please! I am poor :(")
+        return msg
+    return wrapper
+
+
+@beg
+def say(say_please=False):
+    msg = "Can you buy me a beer?"
+    return msg, say_please
+
+
+print(say())
+print(say(True))

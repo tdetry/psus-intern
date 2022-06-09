@@ -31,7 +31,7 @@ newInv = [
     [2, "Hair Pin"],
     [3, "Half-Eaten Apple"],
     [67, "Bowling Ball"],
-    [7, "Toothpaste"]
+    [7, "Toothpaste"],
 ]
 
 

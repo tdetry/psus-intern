@@ -1,0 +1,83 @@
+/*
+    black: #000000
+    white: #FFFFFC
+    red-ish: #D16666
+    blue: #5386E4
+    green-ish: #2C666E
+*/
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    background-color: #E6EBE0;
+    color: black
+}
+
+header {
+    background-color: #E6EBE0;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+header form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.container {
+    max-width: 90%;
+    margin: 0;
+    padding: 20px 40px;
+    justify-content: center;
+}
+
+form > * {
+    margin-bottom: 5px;
+    outline: none;
+    /*border-style: hidden;*/
+    border-radius: 5;
+    padding: 5px;
+}
+
+#btn-add {
+    background-color: #BBA0CA;
+    background-color: #4D5057;
+    color: white;
+    height: 40px;
+}
+
+.note-btn {
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    border-style: hidden;
+    color: white;
+}
+
+.delete {
+    background-color: #CA2E55;
+}
+
+.edit {
+    background-color: #0D3B66;
+}
+
+input {
+    height: 20px;
+}
+
+textarea {
+    height: 100px;
+}
+
+.note {
+    background-color: white;
+    border-radius: 5px;
+    padding: 3px 10px;
+    margin: 10px;
+}

@@ -8,7 +8,7 @@ const sum = (function()
 })();
 console.log(sum(1,2,3,4)); 
 
-// Spread operator
+// Spread operator 
 const arr1 = ['Jan','Feb','Mar','Apr','May'];
 let arr2;
 (function(){
@@ -19,3 +19,19 @@ let arr2;
 })();
 console.log(arr2)
 console.log(arr1)
+
+
+//Desctructuring assignment
+const avg_temp = {
+    today: 30,
+    tomorrow: {min:20, max:40}
+};
+function getTomorrowTemp(avgTemp)
+{
+
+    const {tomorrow : {max: tomorrow_temp }} = avgTemp;
+    return tomorrow_temp;
+
+}
+
+console.log(getTomorrowTemp(avg_temp));

@@ -1,0 +1,1 @@
+select id, name, age, email from "user" where id = 1;

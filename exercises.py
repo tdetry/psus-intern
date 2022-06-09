@@ -150,3 +150,16 @@ print(add_10(3))  # addresses y variable
 (lambda x, y: x ** 2 + y ** 2)(y=2, x=1)  # kwargs also works
 
 list(map(add_10, [1, 2, 3]))  # applies function to 2nd args
+# shows result as list
+list(filter(lambda x: x > 5, [3, 4, 5, 6, 7]))
+# filters out args using lambda function
+
+# list comprehensions
+[add_10(i) for i in [1, 2, 3]]  # each i from list, pass through add_10
+[x for x in [3, 4, 5, 6, 7] if x > 5]  # list all x > 5 from list
+
+# list comprehensions for set and dict variables
+{x for x in 'abcddeef' if x not in 'abc'}  # set comprehension
+{x: x**2 for x in range(5)}  # key-value pair where keys go from 0-4
+
+# generators

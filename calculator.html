@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+    <head>
+
+    </head>
+    <body>
+        <style>
+            .calculator {
+                width: 300px;
+                height: 500px;
+                display: grid;
+                grid-template-columns: repeat(3, 100px);
+            }
+            #display {
+                grid-column: 1 / 4;
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                padding-right: 20px;
+                border-radius: 3px;
+                border-style: solid;
+                border-width: 1px;
+            }
+            .calc-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(216, 216, 216);
+                border-radius: 3px;
+                border-style: solid;
+                border-width: 1px;
+            }
+            #enter {
+                grid-column: 1 / 4;
+            }
+        </style>
+        <script>
+            let storedValue = 0;
+            let displayValue = 0;
+            let resetOnNum = false;
+            let firstOp = true;
+            let operation;
+
+            const numPress = (num) => {
+                if (resetOnNum) {
+                    displayValue = 0;
+                    resetOnNum = false;
+                }
+                displayValue *= 10;
+                displayValue += num;
+                document.getElementById("display").innerHTML = displayValue;
+            }
+
+            const enterPress = () => {
+                switch(operation){
+                    case "add":
+                        storedValue += displayValue;
+                        break;
+                    case "sub":
+                        storedValue -= displayValue;
+                        break;
+                    case "mul":
+                        storedValue *= displayValue;
+                        break;
+                    case "div":
+                        storedValue /= displayValue;
+                        break;
+                }
+                resetOnNum = true;
+                document.getElementById("display").innerHTML = storedValue;
+            }
+
+            const operationPress = (op) => {
+                if (firstOp) {
+                    storedValue = displayValue;
+                    firstOp = false;
+                }
+                else if (!resetOnNum) {
+                    enterPress();
+                }
+                operation = op;
+                displayValue = 0;
+            }
+
+            const clearPress = () => {
+                storedValue = 0;
+                displayValue = 0;
+                resetOnNum = false;
+                firstOp = true;
+                operation = "";
+                enterPress();
+            }
+        </script>
+        <div class="calculator">
+            <div id="display"></div>
+            <div class="calc-btn" onclick="numPress(7)">7</div>
+            <div class="calc-btn" onclick="numPress(8)">8</div>
+            <div class="calc-btn" onclick="numPress(9)">9</div>
+            <div class="calc-btn" onclick="numPress(4)">4</div>
+            <div class="calc-btn" onclick="numPress(5)">5</div>
+            <div class="calc-btn" onclick="numPress(6)">6</div>
+            <div class="calc-btn" onclick="numPress(1)">1</div>
+            <div class="calc-btn" onclick="numPress(2)">2</div>
+            <div class="calc-btn" onclick="numPress(3)">3</div>
+            <div class="calc-btn" onclick="numPress(0)">0</div>
+            <div class="calc-btn" onclick="operationPress('add')">+</div>
+            <div class="calc-btn" onclick="operationPress('sub')">-</div>
+            <div class="calc-btn" onclick="clearPress()">Clear</div>
+            <div class="calc-btn" onclick="operationPress('mul')">*</div>
+            <div class="calc-btn" onclick="operationPress('div')">/</div>
+            <div class="calc-btn" id="enter" onclick="enterPress()">Enter</div>
+        </div>
+    </body>
+</html>

@@ -1,2 +1,2 @@
 # psus-intern
-Internship Project Works Repository 
+This repo has the practice exercies I have done in javascript

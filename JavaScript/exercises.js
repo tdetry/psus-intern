@@ -83,7 +83,8 @@ console.log("The array: ", arr)
 console.log("Updating a const array using indexes and not by directly redefining the array: ")
 arr[0] = 100
 console.log("The new array is: ", arr)
-console.log(`Using the template literals by printing ${checker5} and ${checker6}, and guess what, this works so much like python!!`)
+console.log(`Using the template literals by 
+printing ${checker5} and ${checker6}, and guess what, this works so much like python!!`)
 const obj = {
     id: 1,
     idGenerator() {
